@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import HomeIcon from '../../public/home.svg'
+import HomeIcon from '../public/home.svg'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'

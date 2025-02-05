@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { noto_sans_tc } from '../fonts'
 
 export default function Login() {
@@ -35,9 +36,9 @@ export default function Login() {
           </div>
 
           <div className='w-full h-[51px] text-white bg-[#70C1BC] text-center rounded-tl-md rounded-br-md rounded-tr-xl rounded-bl-xl mt-3'>
-            <a href='/api/auth/login' className='leading-[51px] font-semibold text-[#F2F9F9]'>
+            <Link href='/api/auth/login' className='leading-[51px] font-semibold text-[#F2F9F9]'>
               Sign In
-            </a>
+            </Link>
           </div>
         </div>
       </div>
