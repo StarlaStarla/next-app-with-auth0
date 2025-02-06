@@ -7,6 +7,7 @@ import Link from 'next/link'
 export default function Home() {
   const loadingImg = 'https://cdn.auth0.com/blog/hello-auth0/loader.svg'
   const { user, isLoading } = useUser()
+
   if (isLoading) {
     return (
       <div className='flex items-center justify-center h-screen w-screen bg-gray-500'>

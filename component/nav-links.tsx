@@ -11,8 +11,7 @@ const links = [
     name: 'All Candidates',
     href: '/dashboard/candidates',
     icon: HomeIcon
-  },
-  { name: 'Applications', href: '/dashboard', icon: HomeIcon }
+  }
 ]
 
 export default function NavLinks() {
