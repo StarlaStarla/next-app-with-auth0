@@ -1,20 +1,9 @@
 'use client'
-import './globals.css'
 import { useUser } from '@auth0/nextjs-auth0/client'
-import Image from 'next/image'
 import Link from 'next/link'
 
 export default function Home() {
-  const loadingImg = 'https://cdn.auth0.com/blog/hello-auth0/loader.svg'
-  const { user, isLoading } = useUser()
-
-  if (isLoading) {
-    return (
-      <div className='flex items-center justify-center h-screen w-screen bg-gray-500'>
-        <Image src={loadingImg} alt='Loading...' height={50} width={50} />
-      </div>
-    )
-  }
+  const { user } = useUser()
   if (!user) {
     return (
       <main>

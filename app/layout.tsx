@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { UserProvider } from '@auth0/nextjs-auth0/client'
 import './globals.css'
+import { PageLayout } from '@/component/page-layout'
 
 export const metadata: Metadata = {
   title: 'Next App with Auth0',
@@ -14,9 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <UserProvider>
-        <body className='antialiased'>{children}</body>
-      </UserProvider>
+      <body>
+        <UserProvider>
+          <PageLayout>{children}</PageLayout>
+        </UserProvider>
+      </body>
     </html>
   )
 }
