@@ -4,15 +4,29 @@ import React, { PropsWithChildren } from 'react'
 import { useUser } from '@auth0/nextjs-auth0/client'
 import { PageLoader } from './page-loader'
 import Sidenav from './sidenav'
+import Link from 'next/link'
 
 export const PageLayout: React.FC<PropsWithChildren> = ({ children }) => {
-  const { isLoading } = useUser()
+  const { user, isLoading } = useUser()
 
   if (isLoading) {
     return (
       <div className=''>
         <PageLoader />
       </div>
+    )
+  }
+
+  if (!user) {
+    return (
+      <main>
+        <Link href='/api/auth/login?screen_hint=signup'>
+          <button>Sign up</button>
+        </Link>
+        <Link href='/api/auth/login'>
+          <button>Log in</button>
+        </Link>
+      </main>
     )
   }
 

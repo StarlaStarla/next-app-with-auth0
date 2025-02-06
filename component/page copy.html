@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Sign In with Auth0</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<style>
+  body,
+  html {
+    height: 100%;
+  }
+
+  .invisible {
+    visibility: hidden;
+  }
+
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .login-container {
+    position: relative;
+    height: 100%;
+    background-color: gray;
+  }
+
+  .login-box {
+    width: 552px;
+    height: 594px;
+    background-color: white;
+    border-radius: 8px 36px 8px 36px;
+  }
+
+  .login-header {
+    width: 392px;
+    height: 200px;
+
+    >div {
+      height: 72px;
+      margin-top: 4px;
+      font-size: 24px;
+    }
+
+    >div:first-child {
+      font-size: 14px;
+    }
+
+    >div:last-child {
+      font-size: 16px;
+      margin-top: 4px;
+    }
+  }
+
+  .login-form {
+    width: 392px;
+    height: 200px;
+  }
+
+  #error-message {
+    display: none;
+    white-space: break-spaces;
+  }
+</style>
+
+<body>
+  <main className='login-container flex-center'>
+    <div className='login-box flex-center'>
+      <div className='login-header'>
+        <div>SmartTalentConnect</div>
+        <div>
+          <p className='font-bold'>Welcome to</p>
+          <p>SmartTalenConnect Platform</p>
+        </div>
+        <div>Please sign in to continue</div>
+      </div>
+      <div className='login-form'>
+        <div className='mt-4'>
+          <label className='text-sm font-semibold'>Email</label>
+          <input type='email'
+            className='block w-full h-[51px] border-solid border-[1px] border-[#E5E7EB] hover:border-[#70C1BC] focus:outline-[#70C1BC] rounded-md px-4 mt-2'
+            placeholder='Email'></input>
+        </div>
+
+        <div className='mt-3'>
+          <label className='text-sm font-semibold'>Password</label>
+          <input type='password'
+            className='block w-full h-[51px] border-solid border-[1px] border-[#E5E7EB] hover:border-[#70C1BC] focus:outline-[#70C1BC] rounded-md px-4 mt-2'
+            placeholder='Password'></input>
+        </div>
+
+        <div className='mt-2'>
+          <a className='text-[#007A72] font-medium text-sm '>Forgot my password</a>
+        </div>
+      </div>
+      <div
+        className='w-full h-[51px] text-white bg-[#70C1BC] text-center rounded-tl-md rounded-br-md rounded-tr-xl rounded-bl-xl mt-3'>
+        <Link href='/api/auth/login' className='leading-[51px] font-semibold text-[#F2F9F9]'>
+        Sign In
+        </Link>
+      </div>
+
+    </div>
+  </main>
+</body>
+
+</html>
