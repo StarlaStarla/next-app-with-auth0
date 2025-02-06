@@ -5,6 +5,7 @@ export default withMiddlewareAuthRequired({
   returnTo: '/login',
   // Custom middleware is provided with the `middleware` config option
   async middleware(req) {
+    console.log('middleware-------------')
     return NextResponse.next()
   }
 })
