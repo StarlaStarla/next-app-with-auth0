@@ -1,13 +1,7 @@
 import { withMiddlewareAuthRequired } from '@auth0/nextjs-auth0/edge'
-import { NextResponse } from 'next/server'
 
 export default withMiddlewareAuthRequired({
-  returnTo: '/login',
-  // Custom middleware is provided with the `middleware` config option
-  async middleware(req) {
-    console.log('middleware-------------')
-    return NextResponse.next()
-  }
+  returnTo: '/dashboard'
 })
 
 export const config = {
