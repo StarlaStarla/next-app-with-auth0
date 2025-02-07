@@ -17,19 +17,6 @@ export const PageLayout: React.FC<PropsWithChildren> = ({ children }) => {
     )
   }
 
-  if (!user) {
-    return (
-      <main>
-        <Link href='/api/auth/login?screen_hint=signup'>
-          <button>Sign up</button>
-        </Link>
-        <Link href='/api/auth/login'>
-          <button>Log in</button>
-        </Link>
-      </main>
-    )
-  }
-
   return (
     <div className='flex h-screen flex-col md:flex-row md:overflow-hidden'>
       <div className='w-full flex-none md:w-64'>

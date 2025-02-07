@@ -2,6 +2,7 @@ import { withMiddlewareAuthRequired } from '@auth0/nextjs-auth0/edge'
 import { NextResponse } from 'next/server'
 
 export default withMiddlewareAuthRequired({
+  returnTo: '/login',
   // Custom middleware is provided with the `middleware` config option
   async middleware(req) {
     console.log('middleware-------------')
@@ -18,6 +19,6 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico, sitemap.xml, robots.txt (metadata files)
      */
-    '/dashboard'
+    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)'
   ]
 }
