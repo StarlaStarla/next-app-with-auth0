@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { UserProvider } from '@auth0/nextjs-auth0/client'
-import './globals.css'
 import { PageLayout } from '@/component/page-layout'
+import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Next App with Auth0',
