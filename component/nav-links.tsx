@@ -1,16 +1,15 @@
 'use client'
 import Link from 'next/link'
-import HomeIcon from '../public/home.svg'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 
 const links = [
-  { name: 'Home', href: '/dashboard', icon: HomeIcon },
+  { name: 'Home', href: '/dashboard', icon: './home.svg' },
   {
     name: 'All Candidates',
     href: '/dashboard/candidates',
-    icon: HomeIcon
+    icon: './home.svg'
   }
 ]
 
@@ -27,7 +26,7 @@ export default function NavLinks() {
               'bg-sky-100 text-blue-600': pathName === link.href
             })}
           >
-            <Image priority src={HomeIcon} alt='home' />
+            <Image priority src={link.icon} alt='home' />
             <p className='hidden md:block'>{link.name}</p>
           </Link>
         )

@@ -4,10 +4,9 @@ import React, { PropsWithChildren } from 'react'
 import { useUser } from '@auth0/nextjs-auth0/client'
 import { PageLoader } from './page-loader'
 import Sidenav from './sidenav'
-import Link from 'next/link'
 
 export const PageLayout: React.FC<PropsWithChildren> = ({ children }) => {
-  const { user, isLoading } = useUser()
+  const { isLoading } = useUser()
 
   if (isLoading) {
     return (

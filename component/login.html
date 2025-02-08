@@ -81,7 +81,7 @@
     }
   }
 
-  .info-box {
+  .input-box {
     label {
       display: inline-block;
       font-size: 14px;
@@ -95,11 +95,11 @@
 
     input {
       display: block;
-      width: 372px;
-      height: 51px;
+      width: 370px;
+      height: 50px;
       border: 1px solid #E5E7EB;
       border-radius: 6px;
-      padding: 0 12px;
+      padding: 0 10px;
 
       &:hover {
         border-color: #70C1BC;
@@ -111,23 +111,37 @@
     }
   }
 
-  #password-icon {
+  #password-icon-box {
     position: absolute;
+    width: 48px;
+    height: 48px;
     top: 50%;
-    right: 12px;
+    right: 0;
     transform: translateY(-50%);
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #password-icon {
+    text-align: center;
+    vertical-align: middle;
   }
 
   .forget-password {
     color: #007A72;
     font-size: 14px;
     margin-top: 10px;
+    cursor: pointer;
   }
 
-  #error-message {
+  #error-message,
+  #error-email {
     display: none;
     white-space: break-spaces;
+    color: #C32F26;
+    font-size: 12px;
   }
 
   #btn-login {
@@ -141,8 +155,8 @@
     text-align: center;
     margin-top: 16px;
     border-radius: 4px 12px 4px 12px;
+    border: 1px solid #70C1BC;
     cursor: pointer;
-
   }
 </style>
 
@@ -156,18 +170,22 @@
           <div>SmartTalenConnect Platform</div>
         </div>
         <div>Please sign in to continue</div>
-        </div>
-        <div class='login-form'>
-          <div class="info-box">
-            <label>Email</label>
-            <input type='email' id="email" placeholder='Email' />
+      </div>
+      <div class='login-form'>
+        <div class="input-box">
+          <label>Email</label>
+          <div>
+            <input type='email' id="email" placeholder='Email' value="starlahuang@outlook.com" />
+            <span id="error-email"></span>
+          </div>
         </div>
 
-        <div class="info-box">
+        <div class="input-box">
           <label>Password</label>
           <div>
-            <input type='password' id="password" placeholder='Password' />
-            <img id="password-icon">
+            <input type='password' id="password" placeholder='Password' value="m01m01**Hxy!" />
+            <div id="password-icon-box"><img id="password-icon"></div>
+            <span id="error-message"></span>
           </div>
         </div>
 
@@ -175,32 +193,63 @@
           Forgot my password
         </div>
 
-        <div id="error-message" style="display: none;"></div>
       </div>
-      <div id="btn-login">
+      <button type="submit" id="btn-login">
         Sign In
-      </div>
+      </button>
     </div>
   </main>
   <script src="https://cdn.auth0.com/js/auth0/9.28/auth0.min.js"></script>
   <script>
-    window.addEventListener('load', function () {
       const visibilityImg = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjBweCIgdmlld0JveD0iMCAtOTYwIDk2MCA5NjAiIHdpZHRoPSIyMHB4IiBmaWxsPSIjNWY2MzY4Ij48cGF0aCBkPSJNNDgwLTMxMnE3MCAwIDExOS00OXQ0OS0xMTlxMC03MC00OS0xMTl0LTExOS00OXEtNzAgMC0xMTkgNDl0LTQ5IDExOXEwIDcwIDQ5IDExOXQxMTkgNDlabTAtNzJxLTQwIDAtNjgtMjh0LTI4LTY4cTAtNDAgMjgtNjh0NjgtMjhxNDAgMCA2OCAyOHQyOCA2OHEwIDQwLTI4IDY4dC02OCAyOFptMCAxOTJxLTE0Mi42IDAtMjU5LjgtNzguNVExMDMtMzQ5IDQ4LTQ4MHE1NS0xMzEgMTcyLjItMjA5LjVRMzM3LjQtNzY4IDQ4MC03NjhxMTQyLjYgMCAyNTkuOCA3OC41UTg1Ny02MTEgOTEyLTQ4MHEtNTUgMTMxLTE3Mi4yIDIwOS41UTYyMi42LTE5MiA0ODAtMTkyWm0wLTI4OFptMCAyMTZxMTEyIDAgMjA3LTU4dDE0Ni0xNThxLTUxLTEwMC0xNDYtMTU4dC0yMDctNThxLTExMiAwLTIwNyA1OFQxMjctNDgwcTUxIDEwMCAxNDYgMTU4dDIwNyA1OFoiLz48L3N2Zz4=';
       const visibilityOffImg = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjBweCIgdmlld0JveD0iMCAtOTYwIDk2MCA5NjAiIHdpZHRoPSIyMHB4IiBmaWxsPSIjNWY2MzY4Ij48cGF0aCBkPSJtNjM3LTQyNS02Mi02MnE0LTM4LTIzLTY1LjVUNDg3LTU3NmwtNjItNjJxMTMtNSAyNy03LjV0MjgtMi41cTcwIDAgMTE5IDQ5dDQ5IDExOXEwIDE0LTIuNSAyOHQtOC41IDI3Wm0xMzMgMTMzLTUyLTUycTM2LTI4IDY1LjUtNjEuNVQ4MzMtNDgwcS00OS0xMDEtMTQ0LjUtMTU4LjVUNDgwLTY5NnEtMjYgMC01MSAzdC00OSAxMGwtNTgtNThxMzgtMTUgNzcuNS0yMXQ4MC41LTZxMTQzIDAgMjYxLjUgNzcuNVQ5MTItNDgwcS0yMiA1Ny01OC41IDEwMy41VDc3MC0yOTJabS0yIDIwMkw2MzgtMjIwcS0zOCAxNC03Ny41IDIxdC04MC41IDdxLTE0MyAwLTI2MS41LTc3LjVUNDgtNDgwcTIyLTU3IDU4LTEwNHQ4NC04NUw5MC03NjlsNTEtNTEgNjc4IDY3OS01MSA1MVpNMjQxLTYxN3EtMzUgMjgtNjUgNjEuNVQxMjctNDgwcTQ5IDEwMSAxNDQuNSAxNTguNVQ0ODAtMjY0cTI2IDAgNTEtMy41dDUwLTkuNWwtNDUtNDVxLTE0IDUtMjggNy41dC0yOCAyLjVxLTcwIDAtMTE5LTQ5dC00OS0xMTlxMC0xNCAzLjUtMjh0Ni41LTI4bC04MS04MVptMjg3IDg5Wm0tOTYgOTZaIi8+PC9zdmc+';
-      var config = JSON.parse(
-        decodeURIComponent(escape(window.atob('@@config@@')))
-      );
 
-      var leeway = config.internalOptions.leeway;
+  function togglePasswordType() {
+    const passwordEle = document.getElementById("password");
+    if (passwordEle.type === "password") {
+      passwordEle.type = "text";
+      document.getElementById('password-icon').setAttribute('src', visibilityImg);
+    } else {
+      passwordEle.type = "password";
+      document.getElementById('password-icon').setAttribute('src', visibilityOffImg);
+    }
+  }
+
+  function checkEmailError() {
+    const email = document.getElementById('email').value;
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    const emailErrorEle = document.getElementById('error-email');
+    if (!emailRegex.test(email)) {
+      emailErrorEle.innerText = 'Email is not valid.';
+      emailErrorEle.style.display = 'block';
+      return false;
+    } else {
+      emailErrorEle.innerText = '';
+      emailErrorEle.style.display = 'none';
+    }
+    return true;
+  }
+
+  function displayError(err) {
+    var errorMessage = document.getElementById('error-message');
+    errorMessage.innerText = err.policy || err.description;
+    errorMessage.style.display = 'block';
+  }
+
+  window.addEventListener('load', function () {
+
+    const config = JSON.parse(decodeURIComponent(escape(window.atob('@@config@@'))));
+
+      const leeway = config.internalOptions.leeway;
       if (leeway) {
-        var convertedLeeway = parseInt(leeway);
+        const convertedLeeway = parseInt(leeway);
 
         if (!isNaN(convertedLeeway)) {
           config.internalOptions.leeway = convertedLeeway;
         }
       }
 
-      var params = {
+      const params = {
         overrides: {
           __tenant: config.auth0Tenant,
           __token_issuer: config.authorizationServer.issuer
@@ -215,17 +264,21 @@
         _intstate: config.internalOptions._intstate
       };
 
-      var webAuth = new auth0.WebAuth(params);
-      var databaseConnection = 'Username-Password-Authentication';
+      const webAuth = new auth0.WebAuth(params);
+      const databaseConnection = 'Username-Password-Authentication';
 
       function login(e) {
         e.preventDefault();
-        var button = this;
-        var username = document.getElementById('email').value;
-        var password = document.getElementById('password').value;
+        const button = this;
+        if (!checkEmailError()) {
+          return;
+        }
+
+        const username = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
         button.disabled = true;
 
-        var request = () => {
+        const request = () => {
           webAuth.login({
             realm: databaseConnection,
             username: username,
@@ -239,26 +292,9 @@
         request();
       }
 
-      function displayError(err) {
-        var errorMessage = document.getElementById('error-message');
-        errorMessage.innerText = err.policy || err.description;
-        errorMessage.style.display = 'block';
-      }
-
-      function togglePasswordType() {
-        const passwordEle = document.getElementById("password");
-        if (passwordEle.type === "password") {
-          passwordEle.type = "text";
-          document.getElementById('password-icon').setAttribute('src', visibilityImg);
-        } else {
-          passwordEle.type = "password";
-          document.getElementById('password-icon').setAttribute('src', visibilityOffImg);
-        }
-      }
-
       document.getElementById('password-icon').setAttribute('src', visibilityOffImg);
       document.getElementById('btn-login').addEventListener('click', login);
-      document.getElementById('password-icon').addEventListener('click', togglePasswordType);
+      document.getElementById('password-icon-box').addEventListener('click', togglePasswordType);
     });
   </script>
 </body>
