@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono, Inter, Lusitana } from 'next/font/google'
+import { Geist, Geist_Mono, Inter, Lusitana, Poppins } from 'next/font/google'
 
 import { Noto_Sans_TC } from 'next/font/google'
 
@@ -17,4 +17,8 @@ export const geistMono = Geist_Mono({
 
 export const noto_sans_tc = Noto_Sans_TC({
   subsets: ['latin']
+})
+
+export const poppins = Poppins({
+  weight: '500'
 })
