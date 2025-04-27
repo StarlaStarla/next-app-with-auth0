@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { HTMLProps, useEffect, useRef } from 'react'
 
 function IndeterminateCheckbox({ indeterminate, className = '', ...rest }: { indeterminate?: boolean } & HTMLProps<HTMLInputElement>) {
   const ref = useRef<HTMLInputElement>(null!)

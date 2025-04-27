@@ -20,5 +20,6 @@ export const noto_sans_tc = Noto_Sans_TC({
 })
 
 export const poppins = Poppins({
-  weight: '500'
+  weight: '500',
+  subsets: ['latin']
 })
